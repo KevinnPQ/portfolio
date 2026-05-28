@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.92);
+  background:
+    radial-gradient(1200px 800px at 70% -10%, rgba(99, 102, 241, 0.28), transparent 60%),
+    radial-gradient(900px 700px at 10% 10%, rgba(34, 211, 238, 0.18), transparent 55%),
+    radial-gradient(860px 580px at 18% 0%, rgba(16, 185, 129, 0.22), transparent 62%),
+    radial-gradient(700px 540px at 85% 42%, rgba(20, 184, 166, 0.12), transparent 64%),
+    radial-gradient(760px 620px at 35% 78%, rgba(99, 102, 241, 0.1), transparent 66%),
+    radial-gradient(600px 500px at 75% 92%, rgba(52, 211, 153, 0.09), transparent 68%),
+    linear-gradient(180deg, #0b1020 0%, #0e1630 100%);
+  min-height: 100vh;
+}
+
