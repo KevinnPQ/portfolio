@@ -19,6 +19,14 @@ import Layout from '@layouts/Layouts.astro';
       </div>
     </header>
 
+    <figure class="h-48 md:h-64 overflow-hidden">
+      <img
+        src="/projects/basic-basket/header.jpg"
+        alt="Basic Basket"
+        class="h-full w-full object-cover"
+      />
+    </figure>
+
     <main class="py-14">
       <div class="mx-auto w-[min(100%-40px,1120px)]">
         <h2 class="text-4xl font-extrabold tracking-tight mb-4">Analyses in Basic Basket</h2>
@@ -27,7 +35,13 @@ import Layout from '@layouts/Layouts.astro';
         </p>
 
         <div class="grid gap-6 md:grid-cols-2">
-          <article class="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-colors">
+          <article class="flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+            <img
+              src="/projects/basic-basket/vegetable-volatility/header.jpg"
+              alt="Vegetable Volatility"
+              class="h-28 w-full rounded-t-2xl border-b border-white/10 object-cover"
+            />
+            <div class="flex flex-1 flex-col p-6 pt-5">
             <h3 class="text-2xl font-bold mb-2">Vegetable Volatility</h3>
             <p class="text-white/70 mb-6 flex-1">
               Analysis of the relationship between wholesale supply and consumer price for potato, tomato, and onion.
@@ -38,9 +52,16 @@ import Layout from '@layouts/Layouts.astro';
             >
               Read analysis
             </a>
+            </div>
           </article>
 
-          <article class="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-colors">
+          <article class="flex flex-col rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+            <img
+              src="/projects/basic-basket/social-class-acquisition/header.jpg"
+              alt="Social Class Acquisition"
+              class="h-28 w-full rounded-t-2xl border-b border-white/10 object-cover"
+            />
+            <div class="flex flex-1 flex-col p-6 pt-5">
             <h3 class="text-2xl font-bold mb-2">Social Class Acquisition</h3>
             <p class="text-white/70 mb-6 flex-1">
               Study on how different social strata distribute their spending on the basic basket.
@@ -51,6 +72,7 @@ import Layout from '@layouts/Layouts.astro';
             >
               Read analysis
             </a>
+            </div>
           </article>
         </div>
       </div>
