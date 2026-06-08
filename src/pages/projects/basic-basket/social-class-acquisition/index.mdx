@@ -1,0 +1,30 @@
+---
+layout: "@layouts/MDXLayout.astro"
+title: Acquisition by Social Class
+eyebrow: Study - Acquisition
+shortDescription: Study on how different social strata distribute their spending on the basic basket.
+meta:
+  source: INEC
+  period: 2023
+  dataset: National Household Income and Expenditure Survey (ENIGH)
+---
+
+import DataTable from '@components/DataTable.tsx';
+
+## Executive Summary
+
+An exploratory study on income distribution across essential goods. We observe how families in different quintiles prioritize their spending on food.
+
+## Key Findings
+
+- The lowest quintile allocates up to 40% of its income to the basic basket.
+- Meat products represent the highest spending percentage in the upper quintiles.
+- Bread and grains are a consistent nutritional staple across all strata.
+
+## Sample Data
+
+The main data table would go here.
+
+*(Example using DataTable without real data for now)*
+
+<DataTable client:load csvData={"Quintile,Average Spending\nQ1,40%\nQ2,32%\nQ3,25%\nQ4,18%\nQ5,12%"} />

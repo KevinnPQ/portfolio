@@ -1,0 +1,54 @@
+---
+layout: "@layouts/MDXLayout.astro"
+title: Price Volatility of Basic Basket Vegetables
+eyebrow: Study - Volatility
+shortDescription: Analysis of the relationship between wholesale supply and consumer price for potato, tomato, and onion.
+meta:
+  source: CENADA + INEC
+  period: 2020-2024
+  dataset: Wholesale supply and prices (price per kilo)
+---
+
+import DataTable from '@components/DataTable.tsx';
+import ChartViewer from '@components/ChartViewer.tsx';
+import csvData from './data/correlation_data.csv?raw';
+
+## Executive Summary
+
+We analyze the impact of wholesale supply on household spending and how seasonal changes affect final prices.
+
+## Methodology
+
+- Integration of CENADA (supply) and INEC (prices).
+- Standardization of prices to cost per kilo.
+- Cleaning of outliers, dates, and nomenclatures.
+
+
+## Interactive Charts
+
+<ChartViewer client:load charts={[
+  {
+    type: "html",
+    title: "Potato",
+    src: "/projects/basic-basket/vegetable-volatility/data/potato_chart.html",
+    caption: "Relationship between supply and price for potato."
+  },
+  {
+    type: "html",
+    title: "Tomato",
+    src: "/projects/basic-basket/vegetable-volatility/data/tomato_chart.html",
+    caption: "Relationship between supply and price for tomato."
+  },
+  {
+    type: "html",
+    title: "Onion",
+    src: "/projects/basic-basket/vegetable-volatility/data/onion_chart.html",
+    caption: "Relationship between supply and price for onion."
+  }
+]} />
+
+## Global Correlation by Vegetable
+
+> *Below is the dataframe used for the statistical study.*
+
+<DataTable client:load csvData={csvData} />
