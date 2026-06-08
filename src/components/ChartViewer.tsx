@@ -28,10 +28,12 @@ export interface ChartViewerProps {
 
 function ChartFrame({
   chart,
-  height = "560px",
+  height = "640px",
+  load = true,
 }: {
   chart: ChartItem;
   height?: string;
+  load?: boolean;
 }) {
   if (chart.type === "svg" && chart.svg) {
     return (
@@ -44,7 +46,7 @@ function ChartFrame({
   if (chart.type === "image" && chart.src) {
     return (
       <img
-        src={chart.src}
+        src={load ? chart.src : undefined}
         alt={chart.alt || chart.caption || "Chart"}
         className="w-full rounded-lg m-0"
       />
@@ -53,7 +55,7 @@ function ChartFrame({
   if (chart.type === "html" && chart.src) {
     return (
       <iframe
-        src={chart.src}
+        src={load ? chart.src : undefined}
         title={chart.title || chart.caption || "Interactive chart"}
         style={{ height }}
         className="w-full rounded-lg border border-white/10 bg-white"
@@ -117,11 +119,11 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
 
             {/* Tab contents */}
             {chartList.map((chart, i) => (
-              <Tabs.Content key={i} value={String(i)} className="p-3">
+              <Tabs.Content key={i} value={String(i)} className="p-3 pb-4">
                 {/* Normal view */}
                 {!comparing && (
                   <>
-                    <ChartFrame chart={chart} />
+                    <ChartFrame chart={chart} load={activeTab === i} />
                     {chart.caption && (
                       <p className="mt-2 text-sm text-white/50 text-center">
                         {chart.caption}
@@ -137,7 +139,7 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
                       <p className="text-xs font-semibold uppercase tracking-widest text-indigo-300 mb-2">
                         {chart.title ?? `Chart ${i + 1}`}
                       </p>
-                      <ChartFrame chart={chart} height="420px" />
+                      <ChartFrame chart={chart} height="600px" />
                     </div>
                     {compareIdx !== null && (
                       <div>
@@ -147,7 +149,7 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
                         </p>
                         <ChartFrame
                           chart={chartList[compareIdx]}
-                          height="420px"
+                          height="600px"
                         />
                       </div>
                     )}
