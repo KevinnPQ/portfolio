@@ -1,0 +1,50 @@
+---
+import Layout from '@layouts/Layouts.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title || "Project Analysis"} hideHeader={true}>
+  <div class="min-h-screen text-white">
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0a0f1e]/90 backdrop-blur">
+      <div class="mx-auto flex w-[min(100%-40px,1120px)] items-center justify-between gap-3 py-4">
+        <div class="min-w-0">
+          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-indigo-300">
+            {frontmatter.eyebrow || "Project"}
+          </p>
+          <h1 class="truncate text-lg font-bold md:text-xl">{frontmatter.title}</h1>
+        </div>
+        <a
+          href="/projects"
+          class="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold hover:bg-white/10"
+        >
+          Volver al proyecto
+        </a>
+      </div>
+    </header>
+
+    <main class="mx-auto w-[min(100%-40px,1600px)] py-10">
+      <article class="mx-auto w-full max-w-[960px] p-2 md:p-4">
+        <p class="text-[0.85rem] font-semibold text-indigo-300">{frontmatter.eyebrow || "Case study"}</p>
+        <h2 class="mt-2 text-[2.5rem] font-extrabold leading-tight tracking-tight">{frontmatter.title}</h2>
+        <p class="mt-3 text-[1.4rem] leading-[1.6] text-white/75">
+          {frontmatter.shortDescription}
+        </p>
+
+        {frontmatter.meta && (
+          <div class="mt-6 flex flex-wrap items-center gap-2 border-y border-white/10 py-4">
+            {Object.entries(frontmatter.meta).map(([key, value]) => (
+              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[0.85rem] font-semibold text-white/80">
+                {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div class="mt-8 space-y-8 mdx-content">
+          <slot />
+        </div>
+      </article>
+    </main>
+  </div>
+</Layout>

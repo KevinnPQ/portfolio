@@ -1,0 +1,54 @@
+---
+layout: "@layouts/MDXLayout.astro"
+title: Volatilidad de precios en vegetales de la canasta básica
+eyebrow: Estudio - Volatilidad
+shortDescription: Análisis de la relación entre oferta mayorista y precio al consumidor para papa, tomate y cebolla.
+meta:
+  source: CENADA + INEC
+  period: 2020-2024
+  dataset: Oferta mayorista y precios (precio por kilo)
+---
+
+import DataTable from '@components/DataTable.tsx';
+import ChartViewer from '@components/ChartViewer.tsx';
+import csvData from './data/respaldo_matematico.csv?raw';
+
+## Resumen ejecutivo
+
+Se analiza el impacto de la oferta mayorista en el gasto de los hogares y cómo los cambios estacionales afectan el precio final.
+
+## Metodología
+
+- Integración de CENADA (oferta) e INEC (precios).
+- Estandarización de precios a costo por kilo.
+- Depuración de outliers, fechas y nomenclaturas.
+
+
+## Gráficos interactivos
+
+<ChartViewer client:load charts={[
+  {
+    type: "html",
+    title: "Papa",
+    src: "/projects/canasta-basica/volatilidad-vegetales/data/grafico_papa.html",
+    caption: "Relación entre oferta y precio para papa."
+  },
+  {
+    type: "html",
+    title: "Tomate",
+    src: "/projects/canasta-basica/volatilidad-vegetales/data/grafico_tomate.html",
+    caption: "Relación entre oferta y precio para tomate."
+  },
+  {
+    type: "html",
+    title: "Cebolla",
+    src: "/projects/canasta-basica/volatilidad-vegetales/data/grafico_cebolla.html",
+    caption: "Relación entre oferta y precio para cebolla."
+  }
+]} />
+
+## Correlación global por verdura
+
+> *A continuación se presenta el dataframe usado para el estudio estadístico.*
+
+<DataTable client:load csvData={csvData} />

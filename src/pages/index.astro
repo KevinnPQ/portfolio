@@ -1,0 +1,128 @@
+---
+import Layout from '@layouts/Layouts.astro';
+---
+
+<Layout>
+  <section class="py-16">
+    <div class="mx-auto grid w-[min(100%-40px,1120px)] gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.08em] text-indigo-200">
+          Análisis de Datos • Dashboards • Storytelling
+        </p>
+        <h1 class="mt-4 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">
+          Navegando datos crudos para extraer los insights que importan
+        </h1>
+        <p class="mt-3 max-w-2xl text-white/75">
+          Desde limpiar el ruido hasta descubrir verdades ocultas, transformo información estática en conocimiento accionable
+          que impulsa un cambio real.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {["Excel", "SQL", "Power BI", "Python"].map((tool) => (
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-white/80">
+              {tool}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-2xl">
+        <div class="grid grid-cols-3 gap-2">
+          {[
+            ["Ingresos", "$128k", "+12.4%"],
+            ["Conversión", "3.8%", "+0.6%"],
+            ["Churn", "1.9%", "-0.4%"]
+          ].map(([label, value, delta]) => (
+            <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+              <p class="text-xs font-bold text-white/60">{label}</p>
+              <p class="mt-1 text-lg font-extrabold">{value}</p>
+              <p class={`mt-1 text-xs font-extrabold ${delta.startsWith("+") ? "text-cyan-300" : "text-rose-300"}`}>{delta}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-14">
+    <div class="mx-auto w-[min(100%-40px,1120px)]">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight">Proyectos Destacados</h2>
+          <p class="mt-2 max-w-2xl text-white/70">Un vistazo a algunos de mis últimos análisis de datos.</p>
+        </div>
+        <a 
+          href="/projects" 
+          class="rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-4 py-2 font-bold text-slate-950 hover:opacity-90 transition-opacity"
+        >
+          Ver todos los proyectos
+        </a>
+      </div>
+      
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <article class="flex min-h-[280px] flex-col rounded-2xl border border-white/10 bg-white/5">
+          <div class="h-28 border-b border-white/10 bg-gradient-to-r from-indigo-500/30 to-cyan-400/20"></div>
+          <div class="flex flex-1 flex-col gap-3 p-4">
+            <h3 class="text-lg font-extrabold">Canasta Básica</h3>
+            <p class="text-sm text-white/70">Análisis detallado de la canasta básica, su adquisición y la volatilidad de precios.</p>
+            <div class="mt-auto flex flex-wrap gap-2">
+              {["SQL", "Excel", "Python", "Plotly"].map((tech) => (
+                <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-white/80">
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <a
+              href="/projects/canasta-basica"
+              class="mt-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-bold hover:bg-white/10 text-center"
+            >
+              Explorar análisis
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="border-y border-white/10 bg-white/[0.03] py-14">
+    <div class="mx-auto grid w-[min(100%-40px,1120px)] gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight">Acerca de mí</h2>
+        <p class="mt-3 text-white/75 leading-relaxed">
+          Soy un analista de datos enfocado en convertir datos crudos en decisiones mediante análisis riguroso y narración clara.
+        </p>
+      </div>
+      <aside class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <h3 class="font-bold">Cursos y certificaciones</h3>
+        <ul class="mt-3 list-disc space-y-2 pl-4 text-sm text-white/70">
+          <li>Google Data Analytics</li>
+          <li>SQL for Data Analysis</li>
+          <li>Excel: Tablas dinámicas y Power Query</li>
+          <li>Power BI: DAX y diseño de dashboards</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="contact" class="py-14">
+    <div class="mx-auto grid w-[min(100%-40px,1120px)] gap-5 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight">Contacto</h2>
+        <p class="mt-2 text-white/70">¿Quieres colaborar? Escríbeme y estaré feliz de conversar.</p>
+      </div>
+      <form action="mailto:you@example.com" method="GET" class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <div class="grid gap-3 md:grid-cols-2">
+          <input name="subject" required placeholder="Tu nombre (Asunto)" class="rounded-xl border border-white/10 bg-[#0a0f1e]/40 p-3" />
+        </div>
+        <textarea
+          name="body"
+          rows="6"
+          required
+          placeholder="Háblame de tu proyecto..."
+          class="mt-3 w-full rounded-xl border border-white/10 bg-[#0a0f1e]/40 p-3"
+        ></textarea>
+        <button type="submit" class="mt-3 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-4 py-2 font-bold text-slate-950">
+          Enviar mensaje
+        </button>
+      </form>
+    </div>
+  </section>
+</Layout>
