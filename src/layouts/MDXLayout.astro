@@ -1,7 +1,9 @@
 ---
 import Layout from '@layouts/Layouts.astro';
+import FadeImage from '@components/FadeImage.astro';
 
 const { frontmatter } = Astro.props;
+const imagePath = Astro.url.pathname.replace(/\/$/, '') + '/header.jpg';
 ---
 
 <Layout title={frontmatter.title || "Project Analysis"} hideHeader={true}>
@@ -18,10 +20,12 @@ const { frontmatter } = Astro.props;
           href="/projects"
           class="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold hover:bg-white/10"
         >
-          Volver al proyecto
+          Back to projects
         </a>
       </div>
     </header>
+
+    <FadeImage src={imagePath} alt="" wrapperClass="h-48 md:h-64" />
 
     <main class="mx-auto w-[min(100%-40px,1600px)] py-10">
       <article class="mx-auto w-full max-w-[960px] p-2 md:p-4">

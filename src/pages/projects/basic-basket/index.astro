@@ -1,0 +1,55 @@
+---
+import Layout from '@layouts/Layouts.astro';
+import FadeImage from '@components/FadeImage.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+---
+
+<Layout title="Basic Basket - Hub">
+  <div class="min-h-screen text-white">
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0a0f1e]/90 backdrop-blur">
+      <div class="mx-auto flex w-[min(100%-40px,1120px)] items-center justify-between gap-3 py-4">
+        <div class="min-w-0">
+          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-indigo-300">Project Hub</p>
+          <h1 class="truncate text-lg font-bold md:text-xl">Basic Basket</h1>
+        </div>
+        <a
+          href="/projects"
+          class="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold hover:bg-white/10"
+        >
+          All projects
+        </a>
+      </div>
+    </header>
+
+    <FadeImage src="/projects/basic-basket/header.jpg" alt="Basic Basket" wrapperClass="h-48 md:h-64" />
+
+    <main class="py-14">
+      <div class="mx-auto w-[min(100%-40px,1120px)]">
+        <h2 class="text-4xl font-extrabold tracking-tight mb-4">Analyses in Basic Basket</h2>
+        <p class="max-w-3xl text-lg text-white/70 mb-10">
+          Explore the detailed studies of this project. Select an analysis below to view findings, methodologies, and interactive data.
+        </p>
+
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3 justify-center">
+          <ProjectCard
+            imageSrc="/projects/basic-basket/vegetable-volatility/header.jpg"
+            imageAlt="Vegetable Volatility"
+            title="Vegetable Volatility"
+            description="Analysis of the relationship between wholesale supply and consumer price for potato, tomato, and onion."
+            href="/projects/basic-basket/vegetable-volatility"
+            buttonText="Read analysis"
+          />
+
+          <ProjectCard
+            imageSrc="/projects/basic-basket/social-class-acquisition/header.jpg"
+            imageAlt="Social Class Acquisition"
+            title="Social Class Acquisition"
+            description="Study on how different social strata distribute their spending on the basic basket."
+            href="/projects/basic-basket/social-class-acquisition"
+            buttonText="Read analysis"
+          />
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>

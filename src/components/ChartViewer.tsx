@@ -28,10 +28,12 @@ export interface ChartViewerProps {
 
 function ChartFrame({
   chart,
-  height = "560px",
+  height = "640px",
+  load = true,
 }: {
   chart: ChartItem;
   height?: string;
+  load?: boolean;
 }) {
   if (chart.type === "svg" && chart.svg) {
     return (
@@ -44,8 +46,8 @@ function ChartFrame({
   if (chart.type === "image" && chart.src) {
     return (
       <img
-        src={chart.src}
-        alt={chart.alt || chart.caption || "Gráfico"}
+        src={load ? chart.src : undefined}
+        alt={chart.alt || chart.caption || "Chart"}
         className="w-full rounded-lg m-0"
       />
     );
@@ -53,14 +55,14 @@ function ChartFrame({
   if (chart.type === "html" && chart.src) {
     return (
       <iframe
-        src={chart.src}
-        title={chart.title || chart.caption || "Gráfico interactivo"}
+        src={load ? chart.src : undefined}
+        title={chart.title || chart.caption || "Interactive chart"}
         style={{ height }}
         className="w-full rounded-lg border border-white/10 bg-white"
       />
     );
   }
-  return <p className="text-sm text-white/60">Gráfico no disponible.</p>;
+  return <p className="text-sm text-white/60">Chart not available.</p>;
 }
 
 export default function ChartViewer({ charts }: ChartViewerProps) {
@@ -75,7 +77,7 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
 
   // Build Select collection excluding the active tab
   const compareOptions = chartList
-    .map((c, i) => ({ label: c.title ?? `Gráfico ${i + 1}`, value: String(i) }))
+    .map((c, i) => ({ label: c.title ?? `Chart ${i + 1}`, value: String(i) }))
     .filter((_, i) => i !== activeTab);
   const collection = createListCollection({ items: compareOptions });
 
@@ -109,7 +111,7 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
                   value={String(i)}
                   className="chart-tab-trigger px-3 py-2 text-sm font-semibold text-white/60 rounded-t-lg border-b-2 border-transparent data-[selected]:text-white data-[selected]:border-indigo-400 hover:text-white/80 transition-colors cursor-pointer outline-none"
                 >
-                  {chart.title ?? `Gráfico ${i + 1}`}
+                  {chart.title ?? `Chart ${i + 1}`}
                 </Tabs.Trigger>
               ))}
               <Tabs.Indicator className="hidden" />
@@ -117,11 +119,11 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
 
             {/* Tab contents */}
             {chartList.map((chart, i) => (
-              <Tabs.Content key={i} value={String(i)} className="p-3">
+              <Tabs.Content key={i} value={String(i)} className="p-3 pb-4">
                 {/* Normal view */}
                 {!comparing && (
                   <>
-                    <ChartFrame chart={chart} />
+                    <ChartFrame chart={chart} load={activeTab === i} />
                     {chart.caption && (
                       <p className="mt-2 text-sm text-white/50 text-center">
                         {chart.caption}
@@ -135,25 +137,25 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
                   <div className="flex flex-col gap-3">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-widest text-indigo-300 mb-2">
-                        {chart.title ?? `Gráfico ${i + 1}`}
+                        {chart.title ?? `Chart ${i + 1}`}
                       </p>
-                      <ChartFrame chart={chart} height="420px" />
+                      <ChartFrame chart={chart} height="600px" />
                     </div>
                     {compareIdx !== null && (
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-widest text-cyan-300 mb-2">
                           {chartList[compareIdx].title ??
-                            `Gráfico ${compareIdx + 1}`}
+                            `Chart ${compareIdx + 1}`}
                         </p>
                         <ChartFrame
                           chart={chartList[compareIdx]}
-                          height="420px"
+                          height="600px"
                         />
                       </div>
                     )}
                     {compareIdx === null && (
                       <div className="flex items-center justify-center h-32 rounded-lg border border-dashed border-white/20 text-white/40 text-sm">
-                        Selecciona un gráfico para comparar →
+                        Select a chart to compare →
                       </div>
                     )}
                   </div>
@@ -172,7 +174,7 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
           <Collapsible.Trigger asChild>
             <button
               type="button"
-              title={sidebarOpen ? "Cerrar barra" : "Barra de análisis"}
+              title={sidebarOpen ? "Close sidebar" : "Analysis bar"}
               className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white/80 hover:bg-white/10 transition-colors"
             >
               {sidebarOpen ? (
@@ -180,14 +182,14 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
               ) : (
                 <PanelRightOpen size={16} />
               )}
-              {sidebarOpen ? "" : "Barra de análisis"}
+              {sidebarOpen ? "" : "Analysis bar"}
             </button>
           </Collapsible.Trigger>
 
           <Collapsible.Content className="mt-2 overflow-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
             <div className="w-52 rounded-xl border border-white/10 bg-[#0d1428] p-3 flex flex-col gap-3">
               <p className="text-xs font-bold uppercase tracking-widest text-white/40">
-                Barra de análisis
+                Analysis bar
               </p>
 
               {/* Expand chart button */}
@@ -197,7 +199,7 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
                 onClick={() => setExpandedChart(chartList[activeTab])}
               >
                 <Maximize2 size={14} />
-                Expandir gráfico
+                Expand chart
               </button>
 
               {/* Compare button — only if > 1 chart */}
@@ -210,7 +212,7 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
                       onClick={() => setComparing(true)}
                     >
                       <GitCompare size={14} />
-                      Comparar
+                      Compare
                     </button>
                   ) : (
                     <>
@@ -220,13 +222,13 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
                         onClick={stopComparing}
                       >
                         <X size={14} />
-                        Detener comparación
+                        Stop comparison
                       </button>
 
                       {/* Select: pick comparison chart */}
                       <div>
                         <p className="text-xs text-white/40 mb-1.5 font-medium">
-                          Comparar con:
+                          Compare with:
                         </p>
                         <Select.Root
                           collection={collection}
@@ -240,7 +242,7 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
                         >
                           <Select.Control>
                             <Select.Trigger className="flex w-full items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:bg-white/10 cursor-pointer outline-none focus:border-indigo-400 transition-colors">
-                              <Select.ValueText placeholder="Seleccionar..." />
+                              <Select.ValueText placeholder="Select..." />
                               <Select.Indicator>
                                 <ChevronDown size={14} className="text-white/50" />
                               </Select.Indicator>
@@ -287,14 +289,14 @@ export default function ChartViewer({ charts }: ChartViewerProps) {
             {/* Modal toolbar */}
             <div className="flex items-center justify-between border-b border-white/10 p-3">
               <p className="text-sm font-semibold text-white/80">
-                {expandedChart.title ?? "Gráfico"}
+                {expandedChart.title ?? "Chart"}
               </p>
               <button
                 type="button"
                 className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold hover:bg-white/10 transition-colors"
                 onClick={() => setExpandedChart(null)}
               >
-                Cerrar
+                Close
               </button>
             </div>
 
