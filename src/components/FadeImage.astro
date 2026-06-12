@@ -1,0 +1,24 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  wrapperClass?: string;
+  aspectRatio?: string;
+}
+
+const { src, alt, class: cls, wrapperClass, aspectRatio, ...rest } = Astro.props;
+---
+
+<div class={`image-wrapper ${wrapperClass || ''}`} style={aspectRatio ? `aspect-ratio: ${aspectRatio};` : ''}>
+  <div class="image-skeleton" aria-hidden="true"></div>
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    class={`fade-img ${cls || ''}`}
+    onload="this.classList.add('loaded'); this.previousElementSibling?.remove()"
+    onerror="this.classList.add('loaded'); this.previousElementSibling?.remove()"
+    {...rest}
+  />
+</div>

@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Layouts.astro';
+import ProjectCard from '@components/ProjectCard.astro';
 ---
 
 <Layout title="Projects">
@@ -10,47 +11,26 @@ import Layout from '@layouts/Layouts.astro';
         A collection of in-depth analyses spanning multiple domains, datasets, and methodologies.
       </p>
 
-      <div class="grid gap-6 md:grid-cols-2">
-        <article class="flex min-h-[320px] flex-col rounded-2xl border border-white/10 bg-white/5 transition-transform hover:-translate-y-1">
-          <img
-            src="/projects/basic-basket/header.jpg"
-            alt="Basic Basket"
-            class="h-32 w-full border-b border-white/10 object-cover"
-          />
-          <div class="flex flex-1 flex-col gap-4 p-5">
-            <h2 class="text-2xl font-extrabold">Basic Basket</h2>
-            <p class="text-white/70">
-              Comprehensive analysis of the basic consumer basket. Includes studies on vegetable price volatility
-              and acquisition segmented by social class.
-            </p>
-            <div class="mt-auto flex flex-wrap gap-2">
-              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-white/80">
-                2 Analyses
-              </span>
-            </div>
-            <a
-              href="/projects/basic-basket"
-              class="mt-4 block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-bold hover:bg-white/10"
-            >
-              View project hub
-            </a>
-          </div>
-        </article>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3 justify-center">
+        <ProjectCard
+          imageSrc="/projects/basic-basket/header.jpg"
+          imageAlt="Basic Basket"
+          title="Basic Basket"
+          description="Comprehensive analysis of the basic consumer basket. Includes studies on vegetable price volatility and acquisition segmented by social class."
+          tags={["2 Analyses"]}
+          href="/projects/basic-basket"
+          buttonText="View project hub"
+        />
 
-        <article class="flex min-h-[320px] flex-col rounded-2xl border border-white/10 bg-white/5 transition-transform hover:-translate-y-1 opacity-70">
-          <div class="h-32 border-b border-white/10 bg-gradient-to-r from-emerald-500/30 to-teal-400/20"></div>
-          <div class="flex flex-1 flex-col gap-4 p-5">
-            <h2 class="text-2xl font-extrabold">Labor Market</h2>
-            <p class="text-white/70">
-              Coming soon: Analysis of the labor market, wages, and hiring trends.
-            </p>
-            <div class="mt-auto flex flex-wrap gap-2">
-              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-white/80">
-                Coming soon
-              </span>
-            </div>
-          </div>
-        </article>
+        <ProjectCard
+          imageSrc=""
+          imageAlt="Labor Market"
+          title="Labor Market"
+          description="Coming soon: Analysis of the labor market, wages, and hiring trends."
+          tags={["Coming soon"]}
+          href="#"
+          buttonText="Coming soon"
+        />
       </div>
     </div>
   </section>

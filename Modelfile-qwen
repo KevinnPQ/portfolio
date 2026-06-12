@@ -1,0 +1,7 @@
+# Tomamos el clon de 32k que ya creaste
+FROM qwen3.5:4b-32k
+
+# Forzamos al modelo a ir directo al grano sin bloques de pensamiento
+SYSTEM """
+Responde directamente a las solicitudes del usuario de forma concisa y estructurada. No utilices bloques de pensamiento interno (<think>) ni procesos de razonamiento intermedios. Ve directo al grano.
+"""

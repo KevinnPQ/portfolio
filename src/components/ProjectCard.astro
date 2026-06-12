@@ -1,0 +1,48 @@
+---
+import FadeImage from '@components/FadeImage.astro';
+
+interface Props {
+  imageSrc?: string;
+  imageAlt: string;
+  title: string;
+  description: string;
+  tags?: string[];
+  href: string;
+  buttonText: string;
+}
+
+const { imageSrc, imageAlt, title, description, tags, href, buttonText } = Astro.props;
+---
+
+<article class="flex min-h-[320px] flex-col rounded-2xl border border-white/10 bg-white/5 hover:-translate-y-1 hover:bg-white/10 transition-all">
+  {imageSrc ? (
+    <FadeImage
+      src={imageSrc}
+      alt={imageAlt}
+      wrapperClass="rounded-t-2xl border-b border-white/10 h-40 md:h-44 lg:h-48"
+    />
+  ) : (
+    <div class="h-40 md:h-44 lg:h-48 rounded-t-2xl border-b border-white/10 bg-gradient-to-r from-emerald-500/30 to-teal-400/20"></div>
+  )}
+  <div class="flex flex-1 flex-col gap-4 p-5">
+    <h3 class="text-xl font-extrabold">{title}</h3>
+    <p class="text-white/70 flex-1">{description}</p>
+
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {tags.map(tag => (
+          <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-white/80">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <a
+      href={href}
+      class="mt-auto block w-full rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-4 py-3 text-center text-sm font-bold text-slate-950 hover:opacity-90 transition-all"
+    >
+      {buttonText}
+    </a>
+  </div>
+</article>

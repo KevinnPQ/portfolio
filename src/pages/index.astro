@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Layouts.astro';
+import ProjectCard from '@components/ProjectCard.astro';
 ---
 
 <Layout>
@@ -57,31 +58,16 @@ import Layout from '@layouts/Layouts.astro';
         </a>
       </div>
       
-      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        <article class="flex min-h-[280px] flex-col rounded-2xl border border-white/10 bg-white/5">
-          <img
-            src="/projects/basic-basket/header.jpg"
-            alt="Basic Basket"
-            class="h-28 w-full border-b border-white/10 object-cover"
-          />
-          <div class="flex flex-1 flex-col gap-3 p-4">
-            <h3 class="text-lg font-extrabold">Basic Basket</h3>
-            <p class="text-sm text-white/70">Detailed analysis of the basic consumer basket, its acquisition, and price volatility.</p>
-            <div class="mt-auto flex flex-wrap gap-2">
-              {["SQL", "Excel", "Python", "Plotly"].map((tech) => (
-                <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-white/80">
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <a
-              href="/projects/basic-basket"
-              class="mt-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-bold hover:bg-white/10 text-center"
-            >
-              Explore analysis
-            </a>
-          </div>
-        </article>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3 justify-center">
+        <ProjectCard
+          imageSrc="/projects/basic-basket/header.jpg"
+          imageAlt="Basic Basket"
+          title="Basic Basket"
+          description="Detailed analysis of the basic consumer basket, its acquisition, and price volatility."
+          tags={["SQL", "Excel", "Python", "Plotly"]}
+          href="/projects/basic-basket"
+          buttonText="Explore analysis"
+        />
       </div>
     </div>
   </section>
